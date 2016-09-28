@@ -35,10 +35,15 @@
 
 </style>
 
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 
-	   <i><h1>Current Commuter Rail Departures</h1></i>
+	   <i><h1>Current Commuter Rail Departures</h1><h3 id="date"></h3></i>
 	
 <body>
 
@@ -47,11 +52,11 @@
 <div  id="divTable"> </div>
 
 
-<div class="center-div">
-<select id=stationSelect>
+<div class="center-div" >
+<select id=stationSelect class="form-control" style="width:140px" >
   <option value="North Station">North Station</option>
   <option value="South Station">South Station</option>
-</select><button id="subButton"> Submit </button>
+</select><button id="subButton" class="btn btn-primary"> Submit </button>
 </div>
 
 
@@ -59,9 +64,7 @@
 	
 
 </body>
-<footer style="font-size:7pt"><i><br><br><br>
-Last Updated 9-28-2016
-</i></footer>
+
 
 </html>
 

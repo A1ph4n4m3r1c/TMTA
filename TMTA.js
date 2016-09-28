@@ -4,6 +4,9 @@
 var tableField = document.getElementById("divTable");
 var subButton = document.getElementById("subButton");
 var station = document.getElementById("stationSelect");
+var dateField = document.getElementById("date");
+
+dateField.innerHTML = new Date();
 
 subButton.addEventListener("click", displayTable);
 
@@ -45,7 +48,7 @@ for(rowCount=1; rowCount < responseByRow.length; rowCount++){
 function displayTable(){
 
 
-var tableString = "<table align=\"center\" border=\"1\">";
+var tableString = "<table class=\"table table-bordered\" align=\"center\" border=\"1\">";
 
 for(rowCount = 0; (rowCount < responseByRow.length); rowCount++){
 
