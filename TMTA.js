@@ -28,10 +28,13 @@ for(rowCount=0; rowCount < responseByRow.length; rowCount++){
 
 var tableString = "<table border=\"1\">";
 
-for(rowCount = 0; rowCount < responseByRow.length; rowCount++){
+for(rowCount = 0; (rowCount < responseByRow.length); rowCount++){
+
+	if(departures[rowCount][1] == undefined){break;}
+
 	tableString = tableString + "<tr>";
 	for(colCount = 0; colCount<8; colCount++){
-		tableString = tableString + "<th>" + departures[rowCount][colCount] + "</th>";
+		tableString = tableString + "<th>" + (departures[rowCount][colCount].replace('"','')).replace('"','') + "</th>";
 	}
 	tableString = tableString + "</tr>";
 }
