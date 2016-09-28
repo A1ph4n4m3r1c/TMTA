@@ -2,6 +2,12 @@
 
 
 var tableField = document.getElementById("divTable");
+var subButton = document.getElementById("subButton");
+var station = document.getElementById("stationSelect");
+
+subButton.addEventListener("click", displayTable);
+
+
 
 var request = new XMLHttpRequest();
 request.open('GET','getTrains.php', false);
@@ -26,17 +32,46 @@ for(rowCount=0; rowCount < responseByRow.length; rowCount++){
 	departures[rowCount] = responseByRow[rowCount].split(',');
 }
 
-var tableString = "<table border=\"1\">";
+
+//////Date Conversion from Unix Time to Standard Date/////////
+for(rowCount=1; rowCount < responseByRow.length; rowCount++){
+	departures[rowCount][0] = new Date( departures[rowCount][0] *1000 );
+	departures[rowCount][4] = new Date( departures[rowCount][4] *1000 );
+}
+/////////////////
+
+
+
+function displayTable(){
+
+
+var tableString = "<table align=\"center\" border=\"1\">";
 
 for(rowCount = 0; (rowCount < responseByRow.length); rowCount++){
 
 	if(departures[rowCount][1] == undefined){break;}
 
+	if( ((departures[rowCount][1].replace('"','')).replace('"','') == station.value)   || rowCount == 0 ){
+		
+
 	tableString = tableString + "<tr>";
 	for(colCount = 0; colCount<8; colCount++){
-		tableString = tableString + "<th>" + (departures[rowCount][colCount].replace('"','')).replace('"','') + "</th>";
+		if(rowCount==0){
+			tableString = tableString + "<th><i>" + departures[rowCount][colCount] + "</i></th>";
+		}
+	
+
+		else if( colCount == 0 || colCount == 4){
+			tableString = tableString + "<th>" + departures[rowCount][colCount] + "</th>";
+		}
+		else{
+			tableString = tableString + "<th>" + (departures[rowCount][colCount].replace('"','')).replace('"','') + "</th>";
+		}
 	}
+
 	tableString = tableString + "</tr>";
+
+	}
 }
 
 tableString = tableString + "</table>";
@@ -48,15 +83,7 @@ tableString = tableString + "</table>";
 
 tableField.innerHTML = tableString;
 
-
-//"<table border=\"1\"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr></table>"
-
+} //End Display Table Function
 
 
-//textField.innerHTML = responseByRow.length;
-
-//var temp = responseByRow[0].split(',');
-//for(i=0;i<8;i++){
-//alert(departures[0][i]);
-//}
 
